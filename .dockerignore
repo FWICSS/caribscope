@@ -1,0 +1,17 @@
+# Large data files not needed in build context
+data/Historical_Hurricane_Tracks.csv
+data/processed/
+
+# Dev/tooling
+.superpowers/
+docs/
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.git/
+.gitignore
+
+# macOS
+.DS_Store

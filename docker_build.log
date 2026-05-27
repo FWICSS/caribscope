@@ -1,0 +1,73 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 528B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#2 ...
+
+#3 [auth] library/python:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 1.4s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/7] FROM docker.io/library/python:3.12-slim@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203
+#5 DONE 0.0s
+
+#6 [2/7] WORKDIR /app
+#6 CACHED
+
+#7 [internal] load build context
+#7 transferring context: 322.07MB 5.0s
+#7 ...
+
+#8 [3/7] RUN apt-get update && apt-get install -y     build-essential     curl     software-properties-common     && rm -rf /var/lib/apt/lists/*
+#8 0.686 Hit:1 http://deb.debian.org/debian trixie InRelease
+#8 0.788 Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+#8 1.065 Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+#8 1.198 Get:4 http://deb.debian.org/debian trixie/main arm64 Packages [9608 kB]
+#8 2.651 Get:5 http://deb.debian.org/debian trixie-updates/main arm64 Packages [5404 B]
+#8 2.777 Get:6 http://deb.debian.org/debian-security trixie-security/main arm64 Packages [171 kB]
+#8 3.547 Fetched 9876 kB in 3s (2990 kB/s)
+#8 3.547 Reading package lists...
+#8 4.103 Reading package lists...
+#8 4.597 Building dependency tree...
+#8 4.749 Reading state information...
+#8 4.775 E: Unable to locate package software-properties-common
+#8 ERROR: process "/bin/sh -c apt-get update && apt-get install -y     build-essential     curl     software-properties-common     && rm -rf /var/lib/apt/lists/*" did not complete successfully: exit code: 100
+
+#7 [internal] load build context
+#7 transferring context: 333.50MB 5.2s done
+#7 CANCELED
+------
+ > [3/7] RUN apt-get update && apt-get install -y     build-essential     curl     software-properties-common     && rm -rf /var/lib/apt/lists/*:
+1.065 Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+1.198 Get:4 http://deb.debian.org/debian trixie/main arm64 Packages [9608 kB]
+2.651 Get:5 http://deb.debian.org/debian trixie-updates/main arm64 Packages [5404 B]
+2.777 Get:6 http://deb.debian.org/debian-security trixie-security/main arm64 Packages [171 kB]
+3.547 Fetched 9876 kB in 3s (2990 kB/s)
+3.547 Reading package lists...
+4.103 Reading package lists...
+4.597 Building dependency tree...
+4.749 Reading state information...
+4.775 E: Unable to locate package software-properties-common
+------
+Dockerfile:7
+--------------------
+   6 |     
+   7 | >>> RUN apt-get update && apt-get install -y \
+   8 | >>>     build-essential \
+   9 | >>>     curl \
+  10 | >>>     software-properties-common \
+  11 | >>>     && rm -rf /var/lib/apt/lists/*
+  12 |     
+--------------------
+ERROR: failed to solve: process "/bin/sh -c apt-get update && apt-get install -y     build-essential     curl     software-properties-common     && rm -rf /var/lib/apt/lists/*" did not complete successfully: exit code: 100
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/xfdabv3fjudwdcpm6wy993nan

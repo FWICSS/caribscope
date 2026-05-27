@@ -1,0 +1,60 @@
+# Environnements virtuels
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Outputs générés
+Trajectoire/
+output/
+*.png
+
+# Dossiers de données exportées (générés par scripts)
+Country/
+Hurricanes/
+
+# Données brutes et fichiers de travail non nécessaires à l'app
+data/*.zip
+data/Historical_Hurricane_Tracks.csv
+data/Hurricane_Name.csv
+data/nhc.noaa.gov_*.csv
+data/data_*.csv
+
+# État interne du script de mise à jour
+data/.update_state.json
+data/.update_hurdat2.log
+
+# macOS
+.DS_Store
+
+# Streamlit secrets
+.streamlit/secrets.toml
+
+# Données pré-calculées (générées au build Docker)
+data/processed/
+
+# Brainstorm visuel
+.superpowers/
+
+# Docs internes — stratégie, specs, plans non publics
+docs/
+
+# Scripts d'acquisition et de mise à jour des données — sources protégées
+scripts/
+
+# Données — protégées pour monétisation
+data/
+
+# Fichiers .md racine — roadmap, specs, contexte non publics
+/*.md
