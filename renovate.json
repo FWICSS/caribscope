@@ -1,0 +1,27 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:best-practices"],
+  "timezone": "America/Martinique",
+  "schedule": ["before 6am on Monday"],
+  "labels": ["dependencies"],
+  "pip_requirements": {
+    "enabled": true,
+    "fileMatch": ["requirements.*\\.txt$"]
+  },
+  "packageRules": [
+    {
+      "matchManagers": ["pip_requirements"],
+      "matchPackageNames": ["streamlit", "pandas", "numpy", "plotly", "pyarrow", "scikit-learn"],
+      "automerge": false
+    },
+    {
+      "matchUpdateTypes": ["patch"],
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "labels": ["dependencies", "breaking-change"]
+    }
+  ]
+}
