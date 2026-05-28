@@ -88,13 +88,13 @@ with col_bio:
 with col_links:
     st.markdown("""
     <div style="display:flex;flex-direction:column;gap:12px;padding-top:8px;">
-        <a href="https://github.com/dimitriaigle" target="_blank"
+        <a href="https://github.com/FWICSS" target="_blank"
            style="display:block;background:#161B22;border:1px solid #30363d;border-radius:8px;
                   padding:12px 16px;text-decoration:none;color:#fff;text-align:center;">
             <span style="font-size:20px;">🐙</span><br>
             <span style="font-size:13px;color:#aaa;">GitHub</span>
         </a>
-        <a href="https://fwicss.fr" target="_blank"
+        <a href="https://dimitriaigle.fr" target="_blank"
            style="display:block;background:#161B22;border:1px solid #30363d;border-radius:8px;
                   padding:12px 16px;text-decoration:none;color:#fff;text-align:center;">
             <span style="font-size:20px;">🌐</span><br>
@@ -150,12 +150,12 @@ st.markdown("""
 CaribScope est open source — les contributions sont bienvenues.
 
 **Comment participer :**
-- 🐛 Signaler un bug via les [Issues GitHub](https://github.com/dimitriaigle/caribscope/issues)
+- 🐛 Signaler un bug via les [Issues GitHub](https://github.com/FWICSS/caribscope/issues)
 - 💡 Proposer une feature via une Issue ou une Pull Request
 - ⭐ Donner une étoile au projet sur GitHub pour le faire connaître
 
 ```bash
-git clone https://github.com/dimitriaigle/caribscope.git
+git clone https://github.com/FWICSS/caribscope.git
 cd caribscope
 pip install -r requirements.txt
 streamlit run app.py

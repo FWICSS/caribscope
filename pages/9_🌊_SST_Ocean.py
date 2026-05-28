@@ -38,11 +38,11 @@ st.divider()
 col1, col2 = st.columns(2)
 
 with col1:
-    st.plotly_chart(plot_sst_trend(df_sst), use_container_width=True)
+    st.plotly_chart(plot_sst_trend(df_sst), width="stretch")
 
 with col2:
     corr_df = get_sst_hurricane_correlation(df_hurr, df_sst)
-    st.plotly_chart(plot_sst_correlation(corr_df), use_container_width=True)
+    st.plotly_chart(plot_sst_correlation(corr_df), width="stretch")
 
 # ── Données mensuelles ────────────────────────────────────────────────────────
 st.subheader("Données mensuelles")
@@ -50,6 +50,6 @@ year_sel = st.slider("Année", int(df_sst["year"].min()), int(df_sst["year"].max
 monthly = df_sst[df_sst["year"] == year_sel].copy()
 st.dataframe(
     monthly[["month", "sst_c"]].rename(columns={"month": "Mois", "sst_c": "SST (°C)"}),
-    use_container_width=True,
+    width="stretch",
     hide_index=True,
 )

@@ -62,7 +62,7 @@ with tab1:
         template="plotly_dark", height=320,
     )
     fig_proba.update_coloraxes(showscale=False)
-    st.plotly_chart(fig_proba, use_container_width=True)
+    st.plotly_chart(fig_proba, width="stretch")
 
 # ── Tab 2: Comprendre ─────────────────────────────────────────────────────────
 with tab2:
@@ -83,7 +83,7 @@ with tab2:
         template="plotly_dark", height=350,
     )
     fig_imp.update_coloraxes(showscale=False)
-    st.plotly_chart(fig_imp, use_container_width=True)
+    st.plotly_chart(fig_imp, width="stretch")
 
     top_feature = imp_df["feature_fr"].iloc[0]
     top_pct = round(imp_df["importance"].iloc[0] * 100, 1)
@@ -123,6 +123,6 @@ with tab2:
                 "category_num": "Cat réelle",
                 "predicted_cat": "Cat prédite",
             }),
-            use_container_width=True,
+            width="stretch",
             hide_index=True,
         )

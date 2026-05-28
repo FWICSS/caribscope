@@ -87,7 +87,7 @@ with map_col_a:
         from src.viz.maps import plot_single_track
         st.plotly_chart(
             plot_single_track(df, name_a, year_a),
-            use_container_width=True,
+            width="stretch",
         )
     else:
         st.warning(f"Pas de données pour {name_a} {year_a}")
@@ -97,7 +97,7 @@ with map_col_b:
         from src.viz.maps import plot_single_track
         st.plotly_chart(
             plot_single_track(df, name_b, year_b),
-            use_container_width=True,
+            width="stretch",
         )
     else:
         st.warning(f"Pas de données pour {name_b} {year_b}")
@@ -134,4 +134,4 @@ fig.update_layout(
     height=350,
     legend=dict(orientation="h"),
 )
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width="stretch")

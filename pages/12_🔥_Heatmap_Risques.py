@@ -44,7 +44,7 @@ fig.update_traces(radius=radius)
 fig.update_layout(
     title=f"Densité de passage — Cat. {cat_min}+ · {year_min}–2022"
 )
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width="stretch")
 
 st.caption(
     "**Lecture :** Les zones rouge foncé indiquent les couloirs de passage les plus fréquents. "

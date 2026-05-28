@@ -13,7 +13,6 @@ def get_major_hurricane_pct_by_decade(df: pd.DataFrame) -> pd.DataFrame:
             "total": len(g),
             "major_count": int((g["max_cat"] >= 4).sum()),
         }),
-        include_groups=False,
     ).reset_index()
     grouped["major_pct"] = (grouped["major_count"] / grouped["total"] * 100).round(1)
     return grouped.sort_values("decade")
