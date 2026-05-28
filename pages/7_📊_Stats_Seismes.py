@@ -21,7 +21,7 @@ st.dataframe(
         "year": "Année",
         "depth_km": "Profondeur (km)",
     }),
-    use_container_width=True,
+    width="stretch",
     hide_index=True,
 )
 
@@ -32,17 +32,17 @@ col1, col2 = st.columns(2)
 
 with col1:
     decade_df = get_earthquakes_by_decade(df)
-    st.plotly_chart(plot_earthquakes_by_decade(decade_df), use_container_width=True)
+    st.plotly_chart(plot_earthquakes_by_decade(decade_df), width="stretch")
 
 with col2:
     dist_df = get_magnitude_distribution(df)
-    st.plotly_chart(plot_magnitude_histogram(dist_df), use_container_width=True)
+    st.plotly_chart(plot_magnitude_histogram(dist_df), width="stretch")
 
 st.divider()
 
 # ── Données brutes ────────────────────────────────────────────────────────────
 with st.expander("Données brutes"):
-    st.dataframe(df.sort_values("magnitude", ascending=False).reset_index(drop=True), use_container_width=True)
+    st.dataframe(df.sort_values("magnitude", ascending=False).reset_index(drop=True), width="stretch")
 
 st.download_button(
     label="📥 Télécharger toutes les données (CSV)",

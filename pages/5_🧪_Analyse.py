@@ -108,13 +108,13 @@ col1, col2 = st.columns(2)
 
 if show_per_year and not per_year.empty:
     with col1:
-        st.plotly_chart(plot_hurricanes_per_year(per_year), use_container_width=True)
+        st.plotly_chart(plot_hurricanes_per_year(per_year), width="stretch")
 
 if show_monthly:
     monthly = get_monthly_distribution(df)
     if not monthly.empty:
         with col2:
-            st.plotly_chart(plot_monthly_distribution(monthly), use_container_width=True)
+            st.plotly_chart(plot_monthly_distribution(monthly), width="stretch")
 
 # Ligne 2
 col3, col4 = st.columns(2)
@@ -123,11 +123,11 @@ if show_intensity:
     intensity = get_intensity_trend(df)
     if not intensity.empty:
         with col3:
-            st.plotly_chart(plot_intensity_trend(intensity), use_container_width=True)
+            st.plotly_chart(plot_intensity_trend(intensity), width="stretch")
 
 if show_scatter and not valid_wind.empty:
     with col4:
-        st.plotly_chart(plot_wind_pressure_scatter(df), use_container_width=True)
+        st.plotly_chart(plot_wind_pressure_scatter(df), width="stretch")
 
 # Camembert catégories
 if show_cat_pie:
@@ -152,14 +152,14 @@ if show_cat_pie:
         color_discrete_map=CAT_COLORS,
     )
     fig_pie.update_layout(height=420)
-    st.plotly_chart(fig_pie, use_container_width=True)
+    st.plotly_chart(fig_pie, width="stretch")
 
 # Données brutes
 with st.expander("Données brutes"):
     cols = [c for c in ["NAME", "year", "month", "Hurricane_Date", "LAT", "LON", "USA_WIND", "USA_PRES", "category"] if c in df.columns]
     st.dataframe(
         df[cols].sort_values(["year", "Hurricane_Date"]).reset_index(drop=True),
-        use_container_width=True,
+        width="stretch",
     )
     st.download_button(
         label="📥 Télécharger les données filtrées (CSV)",

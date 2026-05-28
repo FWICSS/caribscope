@@ -37,7 +37,7 @@ if df.empty:
     st.stop()
 
 mode = "heatmap" if map_mode == "Heatmap" else "points"
-st.plotly_chart(plot_earthquake_map(df, mode=mode), use_container_width=True)
+st.plotly_chart(plot_earthquake_map(df, mode=mode), width="stretch")
 
 # ── Export ───────────────────────────────────────────────────────────────────
 st.download_button(

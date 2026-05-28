@@ -45,16 +45,16 @@ if mode == "Ouragan":
 
         col_map, col_chart = st.columns([3, 2])
         with col_map:
-            st.plotly_chart(plot_single_track(df, name, year), use_container_width=True)
+            st.plotly_chart(plot_single_track(df, name, year), width="stretch")
         with col_chart:
-            st.plotly_chart(plot_hurricane_timeline(df, name, year), use_container_width=True)
+            st.plotly_chart(plot_hurricane_timeline(df, name, year), width="stretch")
 
         with st.expander("Données brutes"):
             st.dataframe(
                 track[["Hurricane_Date", "LAT", "LON", "USA_WIND", "USA_PRES", "category"]]
                 .sort_values("Hurricane_Date")
                 .reset_index(drop=True),
-                use_container_width=True,
+                width="stretch",
             )
 
 else:
@@ -80,8 +80,8 @@ else:
                 "max_cat_num": "Catégorie max",
             })
             .reset_index(drop=True),
-            use_container_width=True,
+            width="stretch",
         )
 
         from src.viz.maps import plot_track_map
-        st.plotly_chart(plot_track_map(nearby, title=f"Ouragans proches de {island}"), use_container_width=True)
+        st.plotly_chart(plot_track_map(nearby, title=f"Ouragans proches de {island}"), width="stretch")

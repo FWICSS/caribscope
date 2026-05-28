@@ -51,7 +51,7 @@ st.divider()
 # --- Fréquence annuelle ---
 st.subheader("Fréquence annuelle")
 by_year = get_hurricanes_by_year(df)
-st.plotly_chart(plot_hurricanes_per_year(by_year), use_container_width=True)
+st.plotly_chart(plot_hurricanes_per_year(by_year), width="stretch")
 
 st.divider()
 
@@ -61,12 +61,12 @@ col1, col2 = st.columns(2)
 with col1:
     st.subheader("Intensité par décennie")
     trend = get_intensity_trend(df)
-    st.plotly_chart(plot_intensity_trend(trend), use_container_width=True)
+    st.plotly_chart(plot_intensity_trend(trend), width="stretch")
 
 with col2:
     st.subheader("Saisonnalité")
     monthly = get_monthly_distribution(df)
-    st.plotly_chart(plot_monthly_distribution(monthly), use_container_width=True)
+    st.plotly_chart(plot_monthly_distribution(monthly), width="stretch")
 
 st.divider()
 
@@ -75,8 +75,8 @@ col3, col4 = st.columns(2)
 
 with col3:
     st.subheader("Pression vs Vitesse du vent")
-    st.plotly_chart(plot_wind_pressure_scatter(df), use_container_width=True)
+    st.plotly_chart(plot_wind_pressure_scatter(df), width="stretch")
 
 with col4:
     st.subheader("Répartition par bassin")
-    st.plotly_chart(plot_basin_distribution(df), use_container_width=True)
+    st.plotly_chart(plot_basin_distribution(df), width="stretch")

@@ -66,7 +66,7 @@ if view_mode == "Trajectoires":
 else:
     fig = plot_heatmap(filtered)
 
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width="stretch")
 
 # --- Légende catégories ---
 with st.expander("Légende des catégories Saffir-Simpson"):

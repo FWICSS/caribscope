@@ -50,6 +50,9 @@ data/processed/
 # Docs internes — stratégie, specs, plans non publics
 docs/
 
+# Prompts batch Claude et réponses — repo privé uniquement
+prompts_claude/
+
 # Scripts d'acquisition et de mise à jour des données — sources protégées
 scripts/
 

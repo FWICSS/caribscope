@@ -124,6 +124,11 @@ with odj_col2:
         f"**{odj['NAME']} ({int(odj['year'])})** est l'ouragan du jour — tiré aléatoirement parmi "
         f"{len(named):,} ouragans nommés historiques. Reviens demain pour en découvrir un autre."
     )
+    st.page_link(
+        "pages/14_🌀_Ouragan_du_Jour.py",
+        label="Voir l'analyse complète →",
+        icon="🌀",
+    )
 
 st.divider()
 st.caption("Source : NOAA HURDAT2 · USGS Earthquake Catalog · CaribScope — Projet open source")

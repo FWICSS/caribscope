@@ -59,7 +59,7 @@ with col_map:
             zoom=4.5,
         )
     )
-    st.plotly_chart(fig_map, use_container_width=True)
+    st.plotly_chart(fig_map, width="stretch")
 
 with col_top:
     st.subheader("Top 5 ouragans les plus intenses")
@@ -69,7 +69,7 @@ with col_top:
         "NAME": "Nom", "year": "Année",
         "max_wind": "Vent max (kt)",
     })[["Nom", "Année", "Vent max (kt)", "Catégorie"]]
-    st.dataframe(top5, hide_index=True, use_container_width=True)
+    st.dataframe(top5, hide_index=True, width="stretch")
 
 st.divider()
 
@@ -85,7 +85,7 @@ with col_decade:
         template="plotly_dark",
     )
     fig_dec.update_layout(margin=dict(t=20))
-    st.plotly_chart(fig_dec, use_container_width=True)
+    st.plotly_chart(fig_dec, width="stretch")
 
 with col_month:
     st.subheader("Répartition par mois")
@@ -98,4 +98,4 @@ with col_month:
         template="plotly_dark",
     )
     fig_month.update_layout(margin=dict(t=20))
-    st.plotly_chart(fig_month, use_container_width=True)
+    st.plotly_chart(fig_month, width="stretch")

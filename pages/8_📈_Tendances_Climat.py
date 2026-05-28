@@ -32,13 +32,13 @@ st.divider()
 # ── Graphiques ligne 1 ────────────────────────────────────────────────────────
 col1, col2 = st.columns(2)
 with col1:
-    st.plotly_chart(plot_hurricanes_per_year(per_year), use_container_width=True)
+    st.plotly_chart(plot_hurricanes_per_year(per_year), width="stretch")
 with col2:
-    st.plotly_chart(plot_intensity_trend(intensity), use_container_width=True)
+    st.plotly_chart(plot_intensity_trend(intensity), width="stretch")
 
 # ── Graphiques ligne 2 ────────────────────────────────────────────────────────
 col3, col4 = st.columns(2)
 with col3:
-    st.plotly_chart(plot_major_hurricane_pct(major_pct), use_container_width=True)
+    st.plotly_chart(plot_major_hurricane_pct(major_pct), width="stretch")
 with col4:
-    st.plotly_chart(plot_season_length(season), use_container_width=True)
+    st.plotly_chart(plot_season_length(season), width="stretch")
