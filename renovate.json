@@ -6,7 +6,9 @@
   "labels": ["dependencies"],
   "pip_requirements": {
     "enabled": true,
-    "fileMatch": ["requirements.*\\.txt$"]
+    "managerFilePatterns": [
+      "/requirements.*\\.txt$/"
+    ]
   },
   "packageRules": [
     {
