@@ -24,8 +24,18 @@ st.set_page_config(
 inject_plausible()
 
 
+def _expected_pin() -> str | None:
+    val = os.environ.get("CARIBSCOPE_KPI_PIN")
+    if val:
+        return val
+    try:
+        return st.secrets.get("CARIBSCOPE_KPI_PIN") or None
+    except (FileNotFoundError, AttributeError):
+        return None
+
+
 def _is_authorized() -> bool:
-    expected = os.environ.get("CARIBSCOPE_KPI_PIN")
+    expected = _expected_pin()
     if not expected:
         return True
     if st.session_state.get("_kpi_unlocked"):
