@@ -16,6 +16,14 @@ LEADS_DIR = Path(__file__).resolve().parent.parent.parent / "data" / "leads"
 LEADS_FILE = LEADS_DIR / "emails.csv"
 FIELDS = ["captured_at", "email", "source", "user_agent"]
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+_CSV_DANGEROUS_PREFIXES = ("=", "+", "-", "@", "\t", "\r")
+
+
+def _csv_safe(value: str) -> str:
+    """Neutralize spreadsheet formula injection at CSV-write time."""
+    if value and value[0] in _CSV_DANGEROUS_PREFIXES:
+        return "'" + value
+    return value
 
 
 def _ensure_file() -> None:
@@ -29,9 +37,9 @@ def _store_email(email: str, source: str) -> None:
     _ensure_file()
     row = {
         "captured_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "email": email.strip().lower(),
-        "source": source,
-        "user_agent": os.environ.get("HTTP_USER_AGENT", ""),
+        "email": _csv_safe(email.strip().lower()),
+        "source": _csv_safe(source),
+        "user_agent": _csv_safe(os.environ.get("HTTP_USER_AGENT", "")),
     }
     with LEADS_FILE.open("a", newline="", encoding="utf-8") as f:
         csv.DictWriter(f, fieldnames=FIELDS).writerow(row)
