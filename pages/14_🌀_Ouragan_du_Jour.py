@@ -9,12 +9,17 @@ from src.data.loader import load_caribbean_tracks
 from src.analysis.statistics import get_max_category_per_hurricane
 from src.viz.maps import plot_single_track
 from src.viz.charts import plot_hurricane_timeline
+from src.components.analytics import inject_plausible
+from src.components.email_capture import email_capture_form
+from src.viz.share import share_buttons
 
 st.set_page_config(
     page_title="Ouragan du Jour — CaribScope",
     page_icon="🌀",
     layout="wide",
 )
+
+inject_plausible()
 
 # ── Data ──────────────────────────────────────────────────────────────────────
 @st.cache_data
@@ -119,6 +124,11 @@ if desc and not desc.get("error") and desc.get("resume"):
 col_map, col_chart = st.columns([3, 2])
 with col_map:
     st.plotly_chart(plot_single_track(df, name, year), width="stretch")
+    share_buttons(
+        page_path=f"Ouragan_du_Jour?storm={name}&year={year}",
+        label=f"{name} ({year}) — CaribScope",
+        key=f"share_track_{name}_{year}",
+    )
 with col_chart:
     st.plotly_chart(plot_hurricane_timeline(df, name, year), width="stretch")
 
@@ -190,5 +200,14 @@ with st.expander("📋 Données brutes HURDAT2"):
         .reset_index(drop=True),
         width="stretch",
     )
+
+st.divider()
+
+# ── Capture email ─────────────────────────────────────────────────────────────
+email_capture_form(
+    source="ouragan_du_jour",
+    title="📬 Reçois l'ouragan du jour chaque matin",
+    subtitle="Un ouragan historique + une alerte si une tempête active menace la Caraïbe. 0 spam.",
+)
 
 st.caption("Source : NOAA HURDAT2 · Analyse : Claude AI (Anthropic) · CaribScope — Projet open source")

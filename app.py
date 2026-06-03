@@ -3,6 +3,8 @@ from datetime import date
 import streamlit as st
 from src.data.loader import load_caribbean_tracks
 from src.analysis.statistics import get_max_category_per_hurricane
+from src.components.analytics import inject_plausible
+from src.components.email_capture import email_capture_form
 
 st.set_page_config(
     page_title="CaribScope",
@@ -10,6 +12,8 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
+
+inject_plausible()
 
 st.markdown("""
 <meta name="description" content="CaribScope — Observatoire open source des risques naturels dans la Caraïbe. 170 ans de données ouragans, séismes et climat.">
@@ -129,6 +133,11 @@ with odj_col2:
         label="Voir l'analyse complète →",
         icon="🌀",
     )
+
+st.divider()
+
+# ── Capture email ─────────────────────────────────────────────────────────────
+email_capture_form(source="home")
 
 st.divider()
 st.caption("Source : NOAA HURDAT2 · USGS Earthquake Catalog · CaribScope — Projet open source")
