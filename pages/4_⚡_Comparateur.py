@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 from src.data.loader import load_caribbean_tracks, CATEGORY_COLORS
 from src.viz.maps import plot_track_map
 from src.viz.charts import plot_hurricane_timeline
+from src.viz.share import share_buttons
 
 st.set_page_config(page_title="Comparateur", page_icon="⚡", layout="wide")
 
@@ -135,3 +136,9 @@ fig.update_layout(
     legend=dict(orientation="h"),
 )
 st.plotly_chart(fig, width="stretch")
+
+share_buttons(
+    page_path="Comparateur",
+    label=f"{name_a} {year_a} vs {name_b} {year_b} — Comparateur ouragans CaribScope",
+    key=f"share_comp_{name_a}_{year_a}_{name_b}_{year_b}",
+)

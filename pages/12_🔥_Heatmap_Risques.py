@@ -1,6 +1,7 @@
 import streamlit as st
 from src.data.loader import load_caribbean_tracks
 from src.viz.maps import plot_heatmap
+from src.viz.share import share_buttons
 
 st.set_page_config(page_title="Heatmap Zones à Risque", page_icon="🔥", layout="wide")
 st.title("🔥 Zones à risque — Densité de passage")
@@ -45,6 +46,12 @@ fig.update_layout(
     title=f"Densité de passage — Cat. {cat_min}+ · {year_min}–2022"
 )
 st.plotly_chart(fig, width="stretch")
+
+share_buttons(
+    page_path="Heatmap_Risques",
+    label=f"Zones à risque ouragans Caraïbes Cat. {cat_min}+ depuis {year_min} — CaribScope",
+    key=f"share_heatmap_{cat_min}_{year_min}",
+)
 
 st.caption(
     "**Lecture :** Les zones rouge foncé indiquent les couloirs de passage les plus fréquents. "
