@@ -47,6 +47,10 @@ data/processed/
 # Brainstorm visuel
 .superpowers/
 
+# Rapports d'audit générés localement (Lighthouse, graphify)
+lighthouse-reports/
+graphify-out/
+
 # Docs internes — stratégie, specs, plans non publics
 docs/
 

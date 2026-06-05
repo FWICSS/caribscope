@@ -1,6 +1,7 @@
 import streamlit as st
 from src.data.seismes_loader import load_earthquakes
 from src.viz.seismes_maps import plot_earthquake_map
+from src.viz.share import share_buttons
 
 st.set_page_config(page_title="Carte Sismique", page_icon="🌍", layout="wide")
 st.title("🌍 Carte Sismique — Caraïbes")
@@ -38,6 +39,12 @@ if df.empty:
 
 mode = "heatmap" if map_mode == "Heatmap" else "points"
 st.plotly_chart(plot_earthquake_map(df, mode=mode), width="stretch")
+
+share_buttons(
+    page_path="Carte_Sismique",
+    label=f"Séismes Caraïbes M≥{mag_min} ({year_range[0]}–{year_range[1]}) — CaribScope",
+    key=f"share_seism_{mag_min}_{year_range[0]}_{year_range[1]}",
+)
 
 # ── Export ───────────────────────────────────────────────────────────────────
 st.download_button(

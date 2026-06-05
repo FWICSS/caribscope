@@ -3,6 +3,7 @@ import pandas as pd
 from src.data.loader import load_caribbean_tracks, CARIBBEAN_ISLANDS, ISLAND_COORDS, CATEGORY_COLORS
 from src.analysis.statistics import get_hurricanes_near_island
 from src.viz.maps import plot_track_map, plot_heatmap
+from src.viz.share import share_buttons
 
 st.set_page_config(page_title="Trajectoires", page_icon="🗺️", layout="wide")
 
@@ -67,6 +68,12 @@ else:
     fig = plot_heatmap(filtered)
 
 st.plotly_chart(fig, width="stretch")
+
+share_buttons(
+    page_path="Trajectoires",
+    label=f"Trajectoires ouragans Caraïbes {year_range[0]}–{year_range[1]} — CaribScope",
+    key=f"share_tracks_{year_range[0]}_{year_range[1]}_{island}",
+)
 
 # --- Légende catégories ---
 with st.expander("Légende des catégories Saffir-Simpson"):
