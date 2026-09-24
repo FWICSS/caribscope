@@ -61,7 +61,7 @@ prompts_claude/
 scripts/
 
 # Données — protégées pour monétisation
-data/
+/data/
 
 # Fichiers .md racine — roadmap, specs, contexte non publics
 /*.md
