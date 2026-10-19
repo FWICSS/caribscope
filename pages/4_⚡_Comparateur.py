@@ -5,8 +5,19 @@ from src.data.loader import load_caribbean_tracks, CATEGORY_COLORS
 from src.viz.maps import plot_track_map
 from src.viz.charts import plot_hurricane_timeline
 from src.viz.share import share_buttons
+from src.components.analytics import inject_analytics
+from src.components.head import inject_head
 
 st.set_page_config(page_title="Comparateur", page_icon="⚡", layout="wide")
+
+inject_analytics("Comparateur")
+inject_head(
+    title="Comparateur d'ouragans — CaribScope",
+    description=(
+        "Comparer deux ouragans caribéens côte à côte : intensité, pression, trajectoire et durée de vie."
+    ),
+    path="Comparateur",
+)
 
 st.title("⚡ Comparateur d'ouragans")
 st.caption("Comparez deux ouragans côte à côte")

@@ -16,8 +16,19 @@ from src.viz.charts import (
     plot_intensity_trend,
     plot_wind_pressure_scatter,
 )
+from src.components.analytics import inject_analytics
+from src.components.head import inject_head
 
 st.set_page_config(page_title="Analyse personnalisée", page_icon="🧪", layout="wide")
+
+inject_analytics("Analyse")
+inject_head(
+    title="Analyse des ouragans par île — CaribScope",
+    description=(
+        "Analyse du risque cyclonique par île de la Caraïbe : ouragans passés à proximité, intensités, périodes de retour."
+    ),
+    path="Analyse",
+)
 
 st.title("🧪 Analyse personnalisée")
 st.caption("Appliquez des filtres et générez vos propres statistiques et graphiques.")

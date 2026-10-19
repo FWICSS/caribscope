@@ -4,8 +4,19 @@ from src.analysis.statistics import get_intensity_trend, get_hurricanes_by_year
 from src.analysis.climate import get_major_hurricane_pct_by_decade, get_season_length_by_year
 from src.viz.charts import plot_hurricanes_per_year, plot_intensity_trend
 from src.viz.climate_charts import plot_major_hurricane_pct, plot_season_length
+from src.components.analytics import inject_analytics
+from src.components.head import inject_head
 
 st.set_page_config(page_title="Tendances Climatiques", page_icon="📈", layout="wide")
+
+inject_analytics("Tendances Climat")
+inject_head(
+    title="Tendances climatiques caribéennes — CaribScope",
+    description=(
+        "Évolution de l'intensité cyclonique et des indicateurs climatiques de la Caraïbe par décennie."
+    ),
+    path="Tendances_Climat",
+)
 st.title("📈 Tendances Climatiques — Caraïbes")
 st.caption("Les ouragans s'intensifient-ils ? 170 ans de données NOAA HURDAT2.")
 

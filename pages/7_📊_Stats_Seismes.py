@@ -2,8 +2,19 @@ import streamlit as st
 from src.data.seismes_loader import load_earthquakes
 from src.analysis.seismes import get_top_earthquakes, get_earthquakes_by_decade, get_magnitude_distribution
 from src.viz.seismes_maps import plot_earthquakes_by_decade, plot_magnitude_histogram
+from src.components.analytics import inject_analytics
+from src.components.head import inject_head
 
 st.set_page_config(page_title="Stats Séismes", page_icon="📊", layout="wide")
+
+inject_analytics("Stats Seismes")
+inject_head(
+    title="Statistiques sismiques de la Caraïbe — CaribScope",
+    description=(
+        "Distribution des magnitudes, des profondeurs et de la fréquence des séismes dans l'arc antillais."
+    ),
+    path="Stats_Seismes",
+)
 st.title("📊 Statistiques Sismiques — Caraïbes")
 st.caption("Analyse historique des séismes caribéens · Source : USGS")
 

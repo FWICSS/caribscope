@@ -7,7 +7,8 @@ import os
 import urllib.parse
 
 import streamlit as st
-import streamlit.components.v1 as components
+
+from src.components.embed import embed_html
 
 BASE_URL_DEFAULT = "https://caribscope.fwicss.fr"
 
@@ -34,7 +35,7 @@ def share_buttons(
     x_url = f"https://twitter.com/intent/tweet?text={enc_text}&url={enc_url}"
     li_url = f"https://www.linkedin.com/sharing/share-offsite/?url={enc_url}"
 
-    components.html(
+    embed_html(
         f"""
         <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;
                     font-family:system-ui,sans-serif;margin:4px 0 12px 0;">
@@ -53,7 +54,7 @@ def share_buttons(
                       padding:6px 12px;border-radius:6px;text-decoration:none;font-size:13px;">
                 in Partager
             </a>
-            <span style="color:#888;font-size:12px;">
+            <span style="color:#9ca3af;font-size:12px;">
                 📷 Télécharger en PNG : icône appareil photo dans la barre Plotly
             </span>
             <span id="status-{key}" style="color:#22c55e;font-size:12px;"></span>

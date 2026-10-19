@@ -22,7 +22,7 @@ def plot_track_map(df: pd.DataFrame, title: str = "Trajectoires des ouragans —
 
         color = CATEGORY_COLORS.get(dominant_cat, "#808080")
 
-        fig.add_trace(go.Scattermapbox(
+        fig.add_trace(go.Scattermap(
             lat=group["LAT"].tolist(),
             lon=group["LON"].tolist(),
             mode="lines+markers",
@@ -45,7 +45,7 @@ def plot_track_map(df: pd.DataFrame, title: str = "Trajectoires des ouragans —
 
     fig.update_layout(
         title=title,
-        mapbox=dict(
+        map=dict(
             style="carto-darkmatter",
             center=dict(lat=18, lon=-65),
             zoom=3.5,
@@ -58,7 +58,7 @@ def plot_track_map(df: pd.DataFrame, title: str = "Trajectoires des ouragans —
 
 def plot_heatmap(df: pd.DataFrame) -> go.Figure:
     """Heatmap de densité des passages d'ouragans."""
-    fig = go.Figure(go.Densitymapbox(
+    fig = go.Figure(go.Densitymap(
         lat=df["LAT"],
         lon=df["LON"],
         z=[1] * len(df),
@@ -70,7 +70,7 @@ def plot_heatmap(df: pd.DataFrame) -> go.Figure:
     ))
 
     fig.update_layout(
-        mapbox=dict(
+        map=dict(
             style="carto-darkmatter",
             center=dict(lat=18, lon=-65),
             zoom=3.5,
@@ -91,7 +91,7 @@ def plot_single_track(df: pd.DataFrame, name: str, year: int) -> go.Figure:
     for _, row in track.iterrows():
         cat = row["category"]
         color = CATEGORY_COLORS.get(cat, "#808080")
-        fig.add_trace(go.Scattermapbox(
+        fig.add_trace(go.Scattermap(
             lat=[row["LAT"]],
             lon=[row["LON"]],
             mode="markers",
@@ -107,7 +107,7 @@ def plot_single_track(df: pd.DataFrame, name: str, year: int) -> go.Figure:
         ))
 
     if len(track) > 1:
-        fig.add_trace(go.Scattermapbox(
+        fig.add_trace(go.Scattermap(
             lat=track["LAT"].tolist(),
             lon=track["LON"].tolist(),
             mode="lines",
@@ -124,7 +124,7 @@ def plot_single_track(df: pd.DataFrame, name: str, year: int) -> go.Figure:
     center_lon = (min_lon + max_lon) / 2
 
     fig.update_layout(
-        mapbox=dict(
+        map=dict(
             style="carto-darkmatter",
             center=dict(lat=center_lat, lon=center_lon),
             zoom=4,
@@ -138,7 +138,7 @@ def plot_single_track(df: pd.DataFrame, name: str, year: int) -> go.Figure:
 
 def _add_legend_traces(fig: go.Figure) -> None:
     for cat, color in CATEGORY_COLORS.items():
-        fig.add_trace(go.Scattermapbox(
+        fig.add_trace(go.Scattermap(
             lat=[None], lon=[None],
             mode="markers",
             marker=dict(size=10, color=color),

@@ -2,8 +2,19 @@ import streamlit as st
 from src.data.loader import load_caribbean_tracks
 from src.viz.maps import plot_heatmap
 from src.viz.share import share_buttons
+from src.components.analytics import inject_analytics
+from src.components.head import inject_head
 
 st.set_page_config(page_title="Heatmap Zones à Risque", page_icon="🔥", layout="wide")
+
+inject_analytics("Heatmap Risques")
+inject_head(
+    title="Carte de chaleur du risque cyclonique — CaribScope",
+    description=(
+        "Densité des passages d'ouragans dans la Caraïbe depuis 1851, visualisée en carte de chaleur."
+    ),
+    path="Heatmap_Risques",
+)
 st.title("🔥 Zones à risque — Densité de passage")
 st.caption("Concentration géographique des trajectoires d'ouragans caribéens depuis 1851")
 

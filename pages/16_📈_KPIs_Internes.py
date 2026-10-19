@@ -1,9 +1,15 @@
 """Internal KPI board — leads captured, sources, daily breakdown.
 
-Protected by a simple env var (CARIBSCOPE_KPI_PIN). If unset, the page is open
-in local dev. Set it in Coolify env vars for prod.
+This page exports personal data (the leads CSV), so access is FAIL-CLOSED:
+CARIBSCOPE_KPI_PIN must be set whenever CARIBSCOPE_ENV=production, otherwise
+the page refuses to render. Without the production flag it stays open for local
+dev only.
+
+A PIN in a text field is a weak gate. For anything beyond a solo project, put
+HTTP Basic auth on the reverse proxy in front of this route instead.
 """
 import csv
+import hmac
 import os
 from datetime import date, timedelta
 from pathlib import Path
@@ -12,7 +18,8 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-from src.components.analytics import inject_plausible
+from src.components.analytics import inject_analytics
+from src.components.head import inject_head
 from src.components.email_capture import LEADS_FILE
 
 st.set_page_config(
@@ -21,7 +28,14 @@ st.set_page_config(
     layout="wide",
 )
 
-inject_plausible()
+inject_analytics("KPIs Internes")
+inject_head(
+    title="KPIs internes — CaribScope",
+    description=(
+        "Tableau de bord interne."
+    ),
+    path="KPIs_Internes",
+)
 
 
 def _expected_pin() -> str | None:
@@ -34,20 +48,46 @@ def _expected_pin() -> str | None:
         return None
 
 
+MAX_ATTEMPTS = 5
+
+
 def _is_authorized() -> bool:
+    """Gate the page. Fail CLOSED: no PIN configured means no access in prod.
+
+    The previous behaviour (no PIN -> open) exposed the leads export publicly
+    whenever CARIBSCOPE_KPI_PIN was missing from the deployment env.
+    """
     expected = _expected_pin()
     if not expected:
-        return True
+        if os.environ.get("CARIBSCOPE_ENV", "").lower() == "production":
+            st.title("🔒 KPIs internes")
+            st.error(
+                "Page indisponible : aucun code d'accès n'est configuré sur cette "
+                "instance. Définir CARIBSCOPE_KPI_PIN dans les variables "
+                "d'environnement."
+            )
+            return False
+        return True  # dev local uniquement
+
     if st.session_state.get("_kpi_unlocked"):
         return True
+
+    attempts = st.session_state.get("_kpi_attempts", 0)
     st.title("🔒 KPIs internes")
+    if attempts >= MAX_ATTEMPTS:
+        st.error("Trop de tentatives. Recharge la page pour réessayer.")
+        return False
+
     pin = st.text_input("Code d'accès", type="password")
     if st.button("Valider"):
-        if pin == expected:
+        # compare_digest: pas de fuite d'information par le temps de comparaison
+        if hmac.compare_digest(pin or "", expected):
             st.session_state["_kpi_unlocked"] = True
+            st.session_state["_kpi_attempts"] = 0
             st.rerun()
         else:
-            st.error("Code invalide.")
+            st.session_state["_kpi_attempts"] = attempts + 1
+            st.error(f"Code invalide. Tentative {attempts + 1}/{MAX_ATTEMPTS}.")
     return False
 
 

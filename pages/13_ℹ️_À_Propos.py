@@ -1,4 +1,6 @@
 import streamlit as st
+from src.components.analytics import inject_analytics
+from src.components.head import inject_head
 
 st.set_page_config(
     page_title="À propos — CaribScope",
@@ -6,23 +8,21 @@ st.set_page_config(
     layout="wide",
 )
 
-st.markdown("""
-<meta name="description" content="CaribScope — Observatoire open source des risques naturels dans la Caraïbe. 170 ans de données ouragans, séismes et climat. Projet de Dimitri Aigle.">
-<meta property="og:title" content="CaribScope — Observatoire Caribéen">
-<meta property="og:description" content="170 ans de données ouragans, séismes et climat dans la Caraïbe. Open source, gratuit, propulsé par NOAA & USGS.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://caribscope.fwicss.fr">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="CaribScope — Observatoire Caribéen">
-<meta name="twitter:description" content="170 ans de données ouragans, séismes et climat dans la Caraïbe. Open source.">
-""", unsafe_allow_html=True)
+inject_analytics("À Propos")
+inject_head(
+    title="À propos de CaribScope",
+    description=(
+        "CaribScope, observatoire open source des risques naturels caribéens : ouragans, séismes, climat et prédiction par apprentissage automatique."
+    ),
+    path="À_Propos",
+)
 
 # ── Hero ──────────────────────────────────────────────────────────────────────
 st.markdown("""
 <div style="text-align:center;padding:40px 0 20px 0;">
     <div style="font-size:64px;">🌀</div>
     <h1 style="font-size:2.4rem;margin:12px 0 8px 0;">CaribScope</h1>
-    <p style="color:#aaa;font-size:1.1rem;max-width:600px;margin:0 auto;">
+    <p style="color:#b9c0c8;font-size:1.1rem;max-width:600px;margin:0 auto;">
         Observatoire open source des risques naturels dans la Caraïbe —
         ouragans, séismes, tendances climatiques et prédiction par IA.
     </p>
@@ -35,7 +35,7 @@ st.divider()
 col_proj, col_stack = st.columns([3, 2])
 
 with col_proj:
-    st.subheader("Le projet")
+    st.header("Le projet")
     st.markdown("""
     **CaribScope** est né d'un constat simple : les données sur les risques naturels caribéens
     existent depuis 170 ans, mais elles sont éparpillées, techniques et inaccessibles au grand public.
@@ -53,7 +53,7 @@ with col_proj:
     """)
 
 with col_stack:
-    st.subheader("Stack technique")
+    st.header("Stack technique")
     st.markdown("""
     | Composant | Technologie |
     |---|---|
@@ -68,7 +68,7 @@ with col_stack:
 st.divider()
 
 # ── Fondateur ─────────────────────────────────────────────────────────────────
-st.subheader("Le fondateur")
+st.header("Le fondateur")
 
 col_bio, col_links = st.columns([3, 1])
 
@@ -77,7 +77,7 @@ with col_bio:
     <div style="background:#161B22;border:1px solid #30363d;border-radius:12px;padding:28px;">
         <h3 style="margin:0 0 4px 0;">Dimitri Aigle</h3>
         <p style="color:#DC143C;margin:0 0 16px 0;font-size:0.95rem;">Fondateur · Développeur · Data Engineer</p>
-        <p style="color:#ccc;line-height:1.7;margin:0;">
+        <p style="color:#d0d7de;line-height:1.7;margin:0;">
             Passionné de données et de la Caraïbe, j'ai lancé CaribScope pour rendre accessibles
             170 ans de données sur les risques naturels caribéens. Le projet combine data engineering,
             visualisation interactive et machine learning appliqué à des données météorologiques réelles.
@@ -92,13 +92,13 @@ with col_links:
            style="display:block;background:#161B22;border:1px solid #30363d;border-radius:8px;
                   padding:12px 16px;text-decoration:none;color:#fff;text-align:center;">
             <span style="font-size:20px;">🐙</span><br>
-            <span style="font-size:13px;color:#aaa;">GitHub</span>
+            <span style="font-size:13px;color:#b9c0c8;">GitHub</span>
         </a>
         <a href="https://dimitriaigle.fr" target="_blank"
            style="display:block;background:#161B22;border:1px solid #30363d;border-radius:8px;
                   padding:12px 16px;text-decoration:none;color:#fff;text-align:center;">
             <span style="font-size:20px;">🌐</span><br>
-            <span style="font-size:13px;color:#aaa;">Site web</span>
+            <span style="font-size:13px;color:#b9c0c8;">Site web</span>
         </a>
     </div>
     """, unsafe_allow_html=True)
@@ -106,14 +106,14 @@ with col_links:
 st.divider()
 
 # ── Sources de données ────────────────────────────────────────────────────────
-st.subheader("Sources de données")
+st.header("Sources de données")
 
 c1, c2, c3 = st.columns(3)
 with c1:
     st.markdown("""
     <div style="background:#161B22;border:1px solid #30363d;border-radius:8px;padding:16px;">
-        <h4 style="color:#DC143C;margin:0 0 8px 0;">🌀 NOAA HURDAT2</h4>
-        <p style="color:#aaa;font-size:13px;margin:0;">
+        <h3 style="color:#DC143C;margin:0 0 8px 0;">🌀 NOAA HURDAT2</h3>
+        <p style="color:#b9c0c8;font-size:13px;margin:0;">
             Base de données officielle de la NOAA couvrant toutes les tempêtes tropicales
             de l'Atlantique depuis 1851. Mise à jour annuellement.
         </p>
@@ -123,8 +123,8 @@ with c1:
 with c2:
     st.markdown("""
     <div style="background:#161B22;border:1px solid #30363d;border-radius:8px;padding:16px;">
-        <h4 style="color:#FF6347;margin:0 0 8px 0;">🌍 USGS Earthquake Catalog</h4>
-        <p style="color:#aaa;font-size:13px;margin:0;">
+        <h3 style="color:#FF6347;margin:0 0 8px 0;">🌍 USGS Earthquake Catalog</h3>
+        <p style="color:#b9c0c8;font-size:13px;margin:0;">
             Catalogue sismique mondial de l'US Geological Survey.
             Données de magnitude, profondeur et localisation des séismes.
         </p>
@@ -134,8 +134,8 @@ with c2:
 with c3:
     st.markdown("""
     <div style="background:#161B22;border:1px solid #30363d;border-radius:8px;padding:16px;">
-        <h4 style="color:#4FC3F7;margin:0 0 8px 0;">🌡️ SST Caraïbes</h4>
-        <p style="color:#aaa;font-size:13px;margin:0;">
+        <h3 style="color:#4FC3F7;margin:0 0 8px 0;">🌡️ SST Caraïbes</h3>
+        <p style="color:#b9c0c8;font-size:13px;margin:0;">
             Données de température de surface océanique (SST)
             pour la zone caribéenne, 1980–2025.
         </p>
@@ -145,7 +145,7 @@ with c3:
 st.divider()
 
 # ── Contribuer ────────────────────────────────────────────────────────────────
-st.subheader("Contribuer")
+st.header("Contribuer")
 st.markdown("""
 CaribScope est open source — les contributions sont bienvenues.
 

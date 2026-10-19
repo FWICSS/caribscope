@@ -14,7 +14,7 @@ _MAG_COLOR_SCALE = [
 def plot_earthquake_map(df: pd.DataFrame, mode: str = "points") -> go.Figure:
     """mode: 'points' or 'heatmap'"""
     if mode == "heatmap":
-        fig = go.Figure(go.Densitymapbox(
+        fig = go.Figure(go.Densitymap(
             lat=df["latitude"],
             lon=df["longitude"],
             z=df["magnitude"],
@@ -25,7 +25,7 @@ def plot_earthquake_map(df: pd.DataFrame, mode: str = "points") -> go.Figure:
             hoverinfo="skip",
         ))
     else:
-        fig = go.Figure(go.Scattermapbox(
+        fig = go.Figure(go.Scattermap(
             lat=df["latitude"],
             lon=df["longitude"],
             mode="markers",
@@ -49,7 +49,7 @@ def plot_earthquake_map(df: pd.DataFrame, mode: str = "points") -> go.Figure:
         ))
 
     fig.update_layout(
-        mapbox=dict(
+        map=dict(
             style="carto-darkmatter",
             center=dict(lat=18, lon=-65),
             zoom=3.5,

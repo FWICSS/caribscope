@@ -128,3 +128,23 @@ ISLAND_COORDS = {
     "Jamaïque":               (18.1096, -77.2975),
     "République Dominicaine": (18.7357, -70.1627),
 }
+
+
+@_cache
+def load_home_stats() -> dict | None:
+    """Les 4 compteurs de la home, précalculés. None si l'artefact manque."""
+    import json
+
+    path = DATA_DIR / "processed" / "home.json"
+    if not path.exists():
+        return None
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+@_cache
+def load_named_storms() -> pd.DataFrame | None:
+    """Un enregistrement par ouragan nommé, précalculé. None si absent."""
+    path = DATA_DIR / "processed" / "named_storms.parquet"
+    if not path.exists():
+        return None
+    return pd.read_parquet(path)

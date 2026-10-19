@@ -6,7 +6,8 @@ import plotly.graph_objects as go
 import requests
 import streamlit as st
 
-from src.components.analytics import inject_plausible
+from src.components.analytics import inject_analytics
+from src.components.head import inject_head
 from src.components.email_capture import email_capture_form
 from src.viz.share import share_buttons
 
@@ -16,7 +17,14 @@ st.set_page_config(
     layout="wide",
 )
 
-inject_plausible()
+inject_analytics("Saison 2026 en direct")
+inject_head(
+    title="Saison cyclonique 2026 en direct — CaribScope",
+    description=(
+        "Suivi en direct des systèmes actifs du bassin Atlantique pour la saison cyclonique 2026, à partir du flux du National Hurricane Center."
+    ),
+    path="Saison_2026_en_direct",
+)
 
 NHC_FEED = "https://www.nhc.noaa.gov/CurrentStorms.json"
 ATLANTIC_BASINS = {"AL", "atlantic", "atl"}
@@ -158,7 +166,7 @@ else:
         color = CAT_PALETTE.get(key, "#FFFFFF")
         name = s.get("name") or s.get("id") or "Système"
         intensity = s.get("intensity") or "?"
-        fig.add_trace(go.Scattermapbox(
+        fig.add_trace(go.Scattermap(
             lat=[lat],
             lon=[lon],
             mode="markers+text",
@@ -177,7 +185,7 @@ else:
         ))
 
     fig.update_layout(
-        mapbox=dict(style="carto-darkmatter", center=dict(lat=20, lon=-60), zoom=3),
+        map=dict(style="carto-darkmatter", center=dict(lat=20, lon=-60), zoom=3),
         margin=dict(l=0, r=0, t=10, b=0),
         height=550,
     )

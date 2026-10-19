@@ -4,8 +4,19 @@ from src.data.loader import load_caribbean_tracks, CARIBBEAN_ISLANDS, ISLAND_COO
 from src.analysis.statistics import get_hurricanes_near_island
 from src.viz.maps import plot_track_map, plot_heatmap
 from src.viz.share import share_buttons
+from src.components.analytics import inject_analytics
+from src.components.head import inject_head
 
 st.set_page_config(page_title="Trajectoires", page_icon="🗺️", layout="wide")
+
+inject_analytics("Trajectoires")
+inject_head(
+    title="Trajectoires des ouragans caribéens — CaribScope",
+    description=(
+        "Carte interactive des trajectoires cycloniques dans la Caraïbe depuis 1851, filtrables par année, catégorie et bassin. Données NOAA HURDAT2."
+    ),
+    path="Trajectoires",
+)
 
 st.title("🗺️ Trajectoires des ouragans caribéens")
 

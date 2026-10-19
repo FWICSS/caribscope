@@ -2,6 +2,8 @@ import streamlit as st
 import plotly.express as px
 from src.data.loader import load_caribbean_tracks, CARIBBEAN_ISLANDS, ISLAND_COORDS
 from src.analysis.statistics import get_island_profile
+from src.components.analytics import inject_analytics
+from src.components.head import inject_head
 
 MONTH_NAMES = {
     1: "Janvier", 2: "Février", 3: "Mars", 4: "Avril",
@@ -16,6 +18,15 @@ CAT_LABELS = {
 }
 
 st.set_page_config(page_title="Dashboard par île", page_icon="🏝️", layout="wide")
+
+inject_analytics("Dashboard Île")
+inject_head(
+    title="Profil de risque par île — CaribScope",
+    description=(
+        "Tableau de bord du risque naturel par île de la Caraïbe : ouragans, séismes et exposition historique."
+    ),
+    path="Dashboard_Île",
+)
 st.title("🏝️ Profil de risque par île")
 
 df = load_caribbean_tracks()
@@ -53,7 +64,7 @@ with col_map:
     from src.viz.maps import plot_track_map
     fig_map = plot_track_map(nearby, title=f"Ouragans proches de {island}")
     fig_map.update_layout(
-        mapbox=dict(
+        map=dict(
             style="carto-darkmatter",
             center=dict(lat=island_lat, lon=island_lon),
             zoom=4.5,

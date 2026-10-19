@@ -9,7 +9,8 @@ from src.data.loader import load_caribbean_tracks
 from src.analysis.statistics import get_max_category_per_hurricane
 from src.viz.maps import plot_single_track
 from src.viz.charts import plot_hurricane_timeline
-from src.components.analytics import inject_plausible
+from src.components.analytics import inject_analytics
+from src.components.head import inject_head
 from src.components.email_capture import email_capture_form
 from src.viz.share import share_buttons
 
@@ -19,7 +20,14 @@ st.set_page_config(
     layout="wide",
 )
 
-inject_plausible()
+inject_analytics("Ouragan du Jour")
+inject_head(
+    title="Ouragan du jour — CaribScope",
+    description=(
+        "Chaque jour, un ouragan caribéen historique décrypté : trajectoire, intensité maximale, pression et îles touchées."
+    ),
+    path="Ouragan_du_Jour",
+)
 
 # ── Data ──────────────────────────────────────────────────────────────────────
 @st.cache_data
@@ -84,7 +92,7 @@ st.markdown(f"""
             <h1 style="margin:0;font-size:3rem;color:{cat_color};letter-spacing:2px;">
                 {name}
             </h1>
-            <p style="margin:4px 0 0 0;color:#aaa;font-size:1.2rem;">{year}</p>
+            <p style="margin:4px 0 0 0;color:#b9c0c8;font-size:1.2rem;">{year}</p>
         </div>
         <div style="margin-left:auto;">
             <span style="background:{cat_color};color:#000;font-weight:bold;

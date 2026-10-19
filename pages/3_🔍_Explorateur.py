@@ -4,8 +4,19 @@ from src.data.loader import load_caribbean_tracks, CARIBBEAN_ISLANDS, ISLAND_COO
 from src.analysis.statistics import get_hurricanes_near_island, get_max_category_per_hurricane
 from src.viz.maps import plot_single_track
 from src.viz.charts import plot_hurricane_timeline
+from src.components.analytics import inject_analytics
+from src.components.head import inject_head
 
 st.set_page_config(page_title="Explorateur", page_icon="🔍", layout="wide")
+
+inject_analytics("Explorateur")
+inject_head(
+    title="Explorateur d'ouragans — CaribScope",
+    description=(
+        "Rechercher un ouragan caribéen par nom, année ou intensité, et consulter le détail de sa trajectoire."
+    ),
+    path="Explorateur",
+)
 
 st.title("🔍 Explorateur")
 

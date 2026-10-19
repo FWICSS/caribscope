@@ -3,8 +3,19 @@ import plotly.express as px
 import pandas as pd
 from src.data.loader import load_caribbean_tracks, CATEGORY_COLORS
 from src.ml.predict import load_model, predict_category, get_feature_importance, CATEGORY_LABELS
+from src.components.analytics import inject_analytics
+from src.components.head import inject_head
 
 st.set_page_config(page_title="Prédiction ML", page_icon="🤖", layout="wide")
+
+inject_analytics("Prediction ML")
+inject_head(
+    title="Prédiction d'intensité des ouragans — CaribScope",
+    description=(
+        "Estimation de l'intensité d'un ouragan par forêt aléatoire, entraînée sur 170 ans de relevés NOAA."
+    ),
+    path="Prediction_ML",
+)
 st.title("🤖 Prédiction d'Intensité — Machine Learning")
 st.caption("Modèle Random Forest entraîné sur 170 ans de données HURDAT2 · Prédit la catégorie Saffir-Simpson.")
 

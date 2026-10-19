@@ -13,8 +13,19 @@ from src.viz.charts import (
     plot_wind_pressure_scatter,
     plot_basin_distribution,
 )
+from src.components.analytics import inject_analytics
+from src.components.head import inject_head
 
 st.set_page_config(page_title="Statistiques", page_icon="📊", layout="wide")
+
+inject_analytics("Statistiques")
+inject_head(
+    title="Statistiques des ouragans caribéens — CaribScope",
+    description=(
+        "Fréquence, intensité et distribution mensuelle des ouragans de la Caraïbe sur 170 ans de relevés NOAA."
+    ),
+    path="Statistiques",
+)
 
 st.title("📊 Statistiques — 170 ans d'ouragans caribéens")
 

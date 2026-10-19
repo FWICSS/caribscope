@@ -3,8 +3,19 @@ from src.data.loader import load_caribbean_tracks
 from src.data.sst_loader import load_sst
 from src.analysis.climate import get_sst_hurricane_correlation
 from src.viz.climate_charts import plot_sst_trend, plot_sst_correlation
+from src.components.analytics import inject_analytics
+from src.components.head import inject_head
 
 st.set_page_config(page_title="Température Océan (SST)", page_icon="🌊", layout="wide")
+
+inject_analytics("SST Ocean")
+inject_head(
+    title="Température de surface de l'océan Caraïbe — CaribScope",
+    description=(
+        "Évolution de la température de surface océanique caribéenne de 1980 à 2025, moteur de l'intensification cyclonique."
+    ),
+    path="SST_Ocean",
+)
 st.title("🌊 Température de Surface de l'Océan — Caraïbes")
 st.caption("Évolution de la SST 1980–2025 et corrélation avec l'intensité des ouragans.")
 st.info(

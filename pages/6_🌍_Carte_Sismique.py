@@ -2,8 +2,19 @@ import streamlit as st
 from src.data.seismes_loader import load_earthquakes
 from src.viz.seismes_maps import plot_earthquake_map
 from src.viz.share import share_buttons
+from src.components.analytics import inject_analytics
+from src.components.head import inject_head
 
 st.set_page_config(page_title="Carte Sismique", page_icon="🌍", layout="wide")
+
+inject_analytics("Carte Sismique")
+inject_head(
+    title="Carte sismique de la Caraïbe — CaribScope",
+    description=(
+        "Carte interactive des séismes de l'arc antillais issue du catalogue USGS : magnitude, profondeur, localisation."
+    ),
+    path="Carte_Sismique",
+)
 st.title("🌍 Carte Sismique — Caraïbes")
 st.caption("Séismes de magnitude ≥ 4.0 dans la zone caribéenne · Source : USGS Earthquake Catalog")
 
