@@ -1,0 +1,4 @@
+-r requirements.txt
+
+# Outils de test : installés en CI et en local, jamais dans l'image de production.
+pytest>=8.0,<9

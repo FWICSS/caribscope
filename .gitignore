@@ -65,3 +65,7 @@ data/
 
 # Fichiers .md racine — roadmap, specs, contexte non publics
 /*.md
+# ... sauf la vitrine du dépôt public
+!/README.md
+# skills servies par dis-skills (liens locaux, voir .claude/skills-profile)
+.claude/skills/
