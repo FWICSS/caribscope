@@ -1,0 +1,25 @@
+# CaribScope — https://caribscope.fwicss.fr
+# Servi par le reverse proxy (Coolify/Traefik) ou Cloudflare, pas par Streamlit :
+# Streamlit renvoie le shell HTML de l'application sur toutes les routes.
+
+User-agent: *
+Allow: /
+
+# Pages internes et endpoints applicatifs : aucun intérêt à l'indexation.
+Disallow: /KPIs_Internes
+Disallow: /_stcore/
+Disallow: /component/
+Disallow: /media/
+
+# Crawlers de modèles de langage : à retirer si vous voulez au contraire
+# apparaître dans les réponses des assistants conversationnels.
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+Sitemap: https://caribscope.fwicss.fr/sitemap.xml
