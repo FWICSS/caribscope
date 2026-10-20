@@ -49,25 +49,29 @@ def _expected_pin() -> str | None:
 
 
 MAX_ATTEMPTS = 5
+DEV_ENVS = {"development", "dev", "local"}
 
 
 def _is_authorized() -> bool:
-    """Gate the page. Fail CLOSED: no PIN configured means no access in prod.
+    """Gate the page. Fail CLOSED: no PIN configured means no access, except
+    in an explicitly declared development environment.
 
     The previous behaviour (no PIN -> open) exposed the leads export publicly
     whenever CARIBSCOPE_KPI_PIN was missing from the deployment env.
     """
     expected = _expected_pin()
     if not expected:
-        if os.environ.get("CARIBSCOPE_ENV", "").lower() == "production":
-            st.title("🔒 KPIs internes")
-            st.error(
-                "Page indisponible : aucun code d'accès n'est configuré sur cette "
-                "instance. Définir CARIBSCOPE_KPI_PIN dans les variables "
-                "d'environnement."
-            )
-            return False
-        return True  # dev local uniquement
+        # Ouvert sans code seulement en développement DÉCLARÉ : une variable
+        # oubliée en production ne doit jamais rouvrir l'export des emails.
+        if os.environ.get("CARIBSCOPE_ENV", "").lower() in DEV_ENVS:
+            return True
+        st.title("🔒 KPIs internes")
+        st.error(
+            "Page indisponible : aucun code d'accès n'est configuré sur cette "
+            "instance. Définir CARIBSCOPE_KPI_PIN dans les variables "
+            "d'environnement (ou CARIBSCOPE_ENV=development en local)."
+        )
+        return False
 
     if st.session_state.get("_kpi_unlocked"):
         return True

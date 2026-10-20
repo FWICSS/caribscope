@@ -41,8 +41,8 @@ définissent dans les variables d'environnement de l'hébergeur.
 | Variable | Rôle | Défaut |
 |---|---|---|
 | `GA4_MEASUREMENT_ID` | Identifiant Google Analytics 4 (`G-XXXXXXXXXX`). Vide : aucune mesure d'audience, aucun cookie. | vide |
-| `CARIBSCOPE_KPI_PIN` | Code d'accès du tableau de bord interne. **Obligatoire** si `CARIBSCOPE_ENV=production`. | vide |
-| `CARIBSCOPE_ENV` | `production` active le refus d'accès au tableau de bord interne sans PIN. | vide |
+| `CARIBSCOPE_KPI_PIN` | Code d'accès du tableau de bord interne. Sans lui, la page est fermée partout sauf en développement déclaré. | vide |
+| `CARIBSCOPE_ENV` | `development` (ou `dev`, `local`) ouvre le tableau de bord interne sans PIN en local. Toute autre valeur, ou son absence, l'exige. | vide |
 | `CARIBSCOPE_BASE_URL` | URL publique, utilisée pour les liens canoniques et de partage. | `https://caribscope.fwicss.fr` |
 
 La mesure d'audience n'est chargée qu'après consentement explicite du visiteur
