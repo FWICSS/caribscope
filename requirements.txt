@@ -6,7 +6,7 @@
 # Les outils de test vivent dans requirements-dev.txt.
 streamlit==1.64.0
 pandas==3.0.6
-numpy==2.5.3
+numpy==2.5.4
 plotly==7.1.0
 pyarrow==25.0.1
 scikit-learn==1.9.1
