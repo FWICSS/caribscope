@@ -5,7 +5,7 @@
 # avec plotly 7 : ne pas revenir à Scattermapbox, supprimé en plotly 7.
 # Les outils de test vivent dans requirements-dev.txt.
 streamlit==1.64.0
-pandas==3.0.6
+pandas==3.1.0
 numpy==2.5.3
 plotly==7.1.0
 pyarrow==25.0.1
