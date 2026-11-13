@@ -8,6 +8,8 @@ font = "sans serif"
 [server]
 maxUploadSize = 200
 maxMessageSize = 200
+# Sert static/ sous /app/static/ : image de partage og-default.jpg (deploy/patch_index_html.py).
+enableStaticServing = true
 
 [browser]
 gatherUsageStats = false

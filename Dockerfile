@@ -14,6 +14,10 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+# Balises de partage (titre, description, og:image) dans la coquille HTML de
+# Streamlit : les robots LinkedIn, X et WhatsApp n'exécutent pas le JavaScript.
+RUN python deploy/patch_index_html.py
+
 RUN chmod +x start.sh
 
 EXPOSE 8501

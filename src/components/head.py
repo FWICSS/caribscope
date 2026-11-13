@@ -21,7 +21,7 @@ import streamlit as st
 from src.components.embed import embed_html
 
 BASE_URL_DEFAULT = "https://caribscope.fwicss.fr"
-DEFAULT_IMAGE = "/app/static/og-default.png"
+DEFAULT_IMAGE = "/app/static/og-default.jpg"
 
 
 def _base_url() -> str:
