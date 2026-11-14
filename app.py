@@ -5,6 +5,7 @@ import streamlit as st
 
 from src.analysis.statistics import get_max_category_per_hurricane
 from src.components.analytics import inject_analytics
+from src.components.credit import render_credit
 from src.components.email_capture import email_capture_form
 from src.components.head import inject_head
 from src.data.loader import load_caribbean_tracks, load_home_stats, load_named_storms
@@ -161,6 +162,7 @@ with foot_left:
         "Source : NOAA HURDAT2 · USGS Earthquake Catalog · CaribScope, projet open source. "
         "Les données publiées sont informatives et ne constituent pas une alerte officielle."
     )
+    render_credit()
 with foot_right:
     st.page_link(
         "pages/17_⚖️_Mentions_Legales.py",
