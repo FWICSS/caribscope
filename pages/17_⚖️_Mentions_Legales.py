@@ -11,6 +11,7 @@ l'article 6 III de la LCEN.
 import streamlit as st
 
 from src.components.analytics import consent_reset_button, inject_analytics, measurement_id
+from src.components.head import inject_head
 
 st.set_page_config(
     page_title="Mentions légales — CaribScope",
